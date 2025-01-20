@@ -12,8 +12,7 @@ internal class AccountRoleMapping : IEntityTypeConfiguration<AccountRole>
         {
             x.AccountId,
             x.RoleId,
-        }
-            );
+        });
 
         builder.HasOne(x => x.Account)
             .WithMany(x => x.AccountRoles)

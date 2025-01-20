@@ -18,12 +18,12 @@ public class TenantMapping : IEntityTypeConfiguration<Tenant>
             new
             {
                 Id = 1L,
-                Name = "TourmalineCore"
+                Name = "TourmalineCore",
             },
             new
             {
                 Id = 2L,
-                Name = "Test"
+                Name = "Test",
             }
         );
     }

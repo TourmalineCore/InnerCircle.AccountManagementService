@@ -32,13 +32,12 @@ internal static class MappingData
         new Permission(Permissions.IsCompensationsHardDeleteAllowed),
     };
 
-    public static readonly DateTime AccountsCreatedAtUtc = DateTime.SpecifyKind(new DateTime(2020,
+    public static readonly DateTime AccountsCreatedAtUtc = DateTime.SpecifyKind(
+        new DateTime(2020,
                     01,
                     01,
                     0,
                     0,
-                    0
-                ),
-            DateTimeKind.Utc
-        );
+                    0), 
+        DateTimeKind.Utc);
 }
