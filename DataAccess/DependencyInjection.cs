@@ -24,10 +24,6 @@ public static class DependencyInjection
 
         services.AddScoped<AccountsDbContext>();
 
-        services.AddTransient<IAccountsRepository, AccountsRepository>();
-        services.AddTransient<IRolesRepository, RolesRepository>();
-        services.AddTransient<ITenantsRepository, TenantsRepository>();
-
         return services;
     }
 }

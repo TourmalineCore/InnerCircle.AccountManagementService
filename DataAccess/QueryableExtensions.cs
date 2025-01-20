@@ -19,17 +19,4 @@ public static class QueryableExtensions
     {
         return context.Set<TEntity>();
     }
-
-    public static async Task<TEntity> GetByIdAsync<TEntity>(this IQueryable<TEntity> queryable, long id)
-        where TEntity : class, IEntity
-    {
-        var entity = await FindByIdAsync(queryable, id);
-        return entity ?? throw new NullReferenceException("Entity does not exits");
-    }
-
-    public static async Task<TEntity?> FindByIdAsync<TEntity>(this IQueryable<TEntity> queryable, long id)
-        where TEntity : class, IEntity
-    {
-        return await queryable.SingleOrDefaultAsync(x => x.Id == id);
-    }
 }
