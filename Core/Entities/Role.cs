@@ -1,17 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Core.Contracts;
 using Core.Exceptions;
 using Core.Models;
 
 namespace Core.Entities;
 
-public class Role : IEntity
+public class Role
 {
-    public long Id { get; private set; }
+    public long Id { get; }
 
-    public List<AccountRole> AccountRoles { get; private set; }
+    public List<AccountRole> AccountRoles { get; }
 
     public string[] Permissions { get; private set; } = Array.Empty<string>();
 
@@ -33,20 +32,27 @@ public class Role : IEntity
 
     private string _name;
 
-    public Role(long id, string name, IEnumerable<Permission> permissions)
+    public Role(
+        long id, 
+        string name, 
+        IEnumerable<Permission> permissions)
     {
         Id = id;
         Name = name;
         SetPermissions(permissions);
     }
 
-    public Role(string name, IEnumerable<Permission> permissions)
+    public Role(
+        string name, 
+        IEnumerable<Permission> permissions)
     {
         Name = name;
         SetPermissions(permissions);
     }
 
-    public void Update(string name, IEnumerable<Permission> permissions)
+    public void Update(
+        string name, 
+        IEnumerable<Permission> permissions)
     {
         if (IsAdmin)
         {
@@ -64,12 +70,9 @@ public class Role : IEntity
 
     private void SetPermissions(IEnumerable<Permission> permissions)
     {
-        var rolePermissions = permissions.Select(x => x.Name).ToArray();
+        var rolePermissions = permissions.Select(x => x.Name)
+            .ToArray();
         RolePermissionsValidator.ValidatePermissions(rolePermissions);
         Permissions = rolePermissions;
-    }
-
-    private Role()
-    {
     }
 }

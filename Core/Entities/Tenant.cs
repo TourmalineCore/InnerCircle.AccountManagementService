@@ -10,11 +10,8 @@ public class Tenant
         Name = name;
     }
 
-    private Tenant()
-    {
-    }
-
-    [Key] public long Id { get; set; }
+    [Key] 
+    public long Id { get; set; }
 
     public string Name { get; set; }
 

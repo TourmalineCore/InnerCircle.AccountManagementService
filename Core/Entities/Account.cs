@@ -1,13 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Core.Contracts;
 using Core.Exceptions;
 using NodaTime;
 
 namespace Core.Entities;
 
-public class Account : IEntity
+public class Account
 {
     public long Id { get; private set; }
 
@@ -33,7 +32,13 @@ public class Account : IEntity
 
     public bool IsAdmin => AccountRoles.Count != 0 && AccountRoles.Exists(x => x.Role.IsAdmin);
 
-    public Account(string corporateEmail, string firstName, string lastName, string? middleName, IEnumerable<Role> roles, long tenantId)
+    public Account(
+        string corporateEmail, 
+        string firstName, 
+        string lastName, 
+        string? middleName, 
+        IEnumerable<Role> roles, 
+        long tenantId)
     {
         CorporateEmail = corporateEmail;
         FirstName = firstName;
@@ -55,7 +60,12 @@ public class Account : IEntity
             .ToList();
     }
 
-    public void Update(string firstName, string lastName, string? middleName, List<Role> roles, string callerCorporateEmail)
+    public void Update(
+        string firstName, 
+        string lastName, 
+        string? middleName, 
+        List<Role> roles, 
+        string callerCorporateEmail)
     {
         ValidateIsNotSelfOperation(callerCorporateEmail);
         ValidateRoles(roles);
@@ -110,9 +120,5 @@ public class Account : IEntity
         {
             throw new ArgumentException("Account roles can't be empty");
         }
-    }
-
-    private Account()
-    {
     }
 }
